@@ -1,0 +1,21 @@
+Aula de Inteligência Computacional 16/06/2016
+
+Passos para a construçõa do algoritmo genético
+
+ - Inicialização da população 
+ - 
+
+
+ Problema : 
+ 	Determinar o número de frutas de cada tipo que o container irá carregar 
+ 	de forma a alcançar o maior valor de carregamento, sem ultrapassar o peso 
+ 	áximo e respeitando o mínimo de frutas exigido.
+
+
+Começãr por cromossomo, alfabeto e fitness
+
+
+cromossomo =  192,4,4,4,4
+
+
+
