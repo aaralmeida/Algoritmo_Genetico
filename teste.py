@@ -126,13 +126,29 @@ from random import randint
 # 	popfinalavaliada = avalia_pop(pop_final_real)
 # 	vetor_ensaios.append(individuomaisapto) 
 
-# a =[[0,1,2,3,4,5,6,7,8],[0,1,2,3,4,5,6,7,8,9],[0,1,2,3,4,5,6,7,8,9,10]]
+a =[[0,1,2,3,4,5,6,7,8],[0,1,2,3,4,5,6,7,8,9],[0,1,2,3,4,5,6,7,8,9,10]]
 
-# aux1 = a[0], aux2 = a[1], aux3 = a[2]
+aux1 = a[0]
+aux2 = a[1] 
+def calc(a,b,c,d):
+	a = 5
+	b = 6
+	c = 7
+	d = 8
+	return a,b,c,d
+
+e = calc(1,2,3,4)[3]
+print(e)
 
 # print(aux1)
 # print(aux2)
 # print(aux3)
-a = (9+
-4+5)
-print (a)
+fig =  plt.figure()
+graf1 = fig.add_subplot(1,1,1)
+graf1.plot(aux1,'b-')
+# graf1.plot(individuomaisapto, 'r-')
+# graf1.plot(individuomenosapto, 'g-')
+plt.title('Média dos melhores Individuos', fontsize ='medium')
+plt.ylabel(u'Melhor individuo')
+plt.xlabel(u'Gerações')
+plt.show()
