@@ -7,7 +7,7 @@ tamanhopop = 100  # Número de Individuos
 tamanhoindividuo = 50  # Tamanho de bits de cada indivíduo
 taxadecruzamento = 75
 taxamutacao = 1
-geracao = 100
+geracao = 1
 def criarpop(tamanhopop, tamanhoindiviuo):
     pop = []
     aux = []
@@ -126,6 +126,7 @@ def selecaomaisapto(pop_avaliada):
             maisapto = pop_avaliada[i]
     return maisapto
 
+
 def selecaomenosapto(pop_avaliada):
     menosapto = 1
     for i in range(0, len(pop_avaliada)):
@@ -147,128 +148,125 @@ def media(ensaio1, ensaio2, ensaio3, ensaio4, ensaio5, ensaio6, ensaio7, ensaio8
     return media
 
 def main(geracao, pop_atual, taxadecruzamento, taxamutacao):
-    individuomaisapto = []
-    individuomenosapto = []
+    individuomaisapto=[]
+    individuomenosapto=[]
     for i in range(0, geracao):
-        popinteiro = decodint(pop_atual)
-        popreal = decodreal(popinteiro)
+        popinteiro=decodint(pop_atual)
+        popreal=decodreal(popinteiro)
         popavaliada = avalia_pop(popreal)
-        individuomaisapto.append(selecaomaisapto(popavaliada))
+        individuomaisapto.append(selecaomaisapto(popavaliada,pop_atual))
         individuomenosapto.append(selecaomenosapto(popavaliada))
         pop_filhos = cruzamento(pop_atual, popavaliada, taxadecruzamento)
         pop_filhosmutados = mutacao(pop_filhos, taxamutacao)
         pop_atual = pop_filhosmutados
-    # print(individuomaisapto)
-    # print('\n')
-    # print(popavaliada)
+
     return (pop_atual, individuomaisapto, individuomenosapto)
 
-vetor_ensaios = []
+# vetor_ensaios = []
 
-popatual = criarpop(tamanhopop, tamanhoindividuo)
-for i in range(1, 4):
-    individuomaisapto = main(geracao, popatual, taxadecruzamento, taxamutacao)[1]
-    vetor_ensaios.append(individuomaisapto)
-    print(i)
+# popatual = criarpop(tamanhopop, tamanhoindividuo)
+# for i in range(1, 4):
+#     individuomaisapto = main(geracao, popatual, taxadecruzamento, taxamutacao)[1]
+#     vetor_ensaios.append(individuomaisapto)
+#     print(i)
 
-popatual = criarpop(tamanhopop, tamanhoindividuo)
-for i in range(4, 7):
-    individuomaisapto = main(geracao, popatual, taxadecruzamento, taxamutacao)[1]
-    vetor_ensaios.append(individuomaisapto)    
-    print(i)
+# popatual = criarpop(tamanhopop, tamanhoindividuo)
+# for i in range(4, 7):
+#     individuomaisapto = main(geracao, popatual, taxadecruzamento, taxamutacao)[1]
+#     vetor_ensaios.append(individuomaisapto)    
+#     print(i)
 
-popatual = criarpop(tamanhopop, tamanhoindividuo)
-for i in range(7, 10):
-    individuomaisapto = main(geracao, popatual, taxadecruzamento, taxamutacao)[1]
-    vetor_ensaios.append(individuomaisapto)
-    print(i)
+# popatual = criarpop(tamanhopop, tamanhoindividuo)
+# for i in range(7, 10):
+#     individuomaisapto = main(geracao, popatual, taxadecruzamento, taxamutacao)[1]
+#     vetor_ensaios.append(individuomaisapto)
+#     print(i)
 
-popatual = criarpop(tamanhopop, tamanhoindividuo)
-for i in range(10, 13):
-    individuomaisapto = main(geracao, popatual, taxadecruzamento, taxamutacao)[1]
-    vetor_ensaios.append(individuomaisapto)
-    print(i)
+# popatual = criarpop(tamanhopop, tamanhoindividuo)
+# for i in range(10, 13):
+#     individuomaisapto = main(geracao, popatual, taxadecruzamento, taxamutacao)[1]
+#     vetor_ensaios.append(individuomaisapto)
+#     print(i)
 
-popatual = criarpop(tamanhopop, tamanhoindividuo)
-for i in range(13, 16):
-    individuomaisapto = main(geracao, popatual, taxadecruzamento, taxamutacao)[1]
-    vetor_ensaios.append(individuomaisapto)
-    print(i)
+# popatual = criarpop(tamanhopop, tamanhoindividuo)
+# for i in range(13, 16):
+#     individuomaisapto = main(geracao, popatual, taxadecruzamento, taxamutacao)[1]
+#     vetor_ensaios.append(individuomaisapto)
+#     print(i)
 
-popatual = criarpop(tamanhopop, tamanhoindividuo)
-for i in range(16, 19):
-    individuomaisapto = main(geracao, popatual, taxadecruzamento, taxamutacao)[1]
-    vetor_ensaios.append(individuomaisapto)
-    print(i)
+# popatual = criarpop(tamanhopop, tamanhoindividuo)
+# for i in range(16, 19):
+#     individuomaisapto = main(geracao, popatual, taxadecruzamento, taxamutacao)[1]
+#     vetor_ensaios.append(individuomaisapto)
+#     print(i)
 
-popatual = criarpop(tamanhopop, tamanhoindividuo)
-for i in range(19, 22):
-    individuomaisapto = main(geracao, popatual, taxadecruzamento, taxamutacao)[1]
-    vetor_ensaios.append(individuomaisapto)
-    print(i)
+# popatual = criarpop(tamanhopop, tamanhoindividuo)
+# for i in range(19, 22):
+#     individuomaisapto = main(geracao, popatual, taxadecruzamento, taxamutacao)[1]
+#     vetor_ensaios.append(individuomaisapto)
+#     print(i)
 
-popatual = criarpop(tamanhopop, tamanhoindividuo)
-for i in range(22, 25):
-    individuomaisapto = main(geracao, popatual, taxadecruzamento, taxamutacao)[1]
-    vetor_ensaios.append(individuomaisapto)
-    print(i)
+# popatual = criarpop(tamanhopop, tamanhoindividuo)
+# for i in range(22, 25):
+#     individuomaisapto = main(geracao, popatual, taxadecruzamento, taxamutacao)[1]
+#     vetor_ensaios.append(individuomaisapto)
+#     print(i)
 
-popatual = criarpop(tamanhopop, tamanhoindividuo)
-for i in range(25, 28):
-    individuomaisapto = main(geracao, popatual, taxadecruzamento, taxamutacao)[1]
-    vetor_ensaios.append(individuomaisapto)
-    print(i)
+# popatual = criarpop(tamanhopop, tamanhoindividuo)
+# for i in range(25, 28):
+#     individuomaisapto = main(geracao, popatual, taxadecruzamento, taxamutacao)[1]
+#     vetor_ensaios.append(individuomaisapto)
+#     print(i)
 
-popatual = criarpop(tamanhopop, tamanhoindividuo)
-for i in range(28, 31):
-    individuomaisapto = main(geracao, popatual, taxadecruzamento, taxamutacao)[1]
-    vetor_ensaios.append(individuomaisapto)
-    print(individuomaisapto)
-    print(i)
-individuomaisapto = main(geracao,popatual,taxadecruzamento,taxamutacao)[1]
-individuomenosapto = main(geracao,popatual,taxadecruzamento,taxamutacao)[2]
-aux0 = vetor_ensaios[0]
-aux1 = vetor_ensaios[1]
-aux2 = vetor_ensaios[2]
-aux3 = vetor_ensaios[3]
-aux4 = vetor_ensaios[4]
-aux5 = vetor_ensaios[5]
-aux6 = vetor_ensaios[6]
-aux7 = vetor_ensaios[7]
-aux8 = vetor_ensaios[8]
-aux9 = vetor_ensaios[9]
-aux10 = vetor_ensaios[10]
-aux11 = vetor_ensaios[11]
-aux12 = vetor_ensaios[12]
-aux13 = vetor_ensaios[13]
-aux14 = vetor_ensaios[14]
-aux15 = vetor_ensaios[15]
-aux16 = vetor_ensaios[16]
-aux17 = vetor_ensaios[17]
-aux18 = vetor_ensaios[18]
-aux19 = vetor_ensaios[19]
-aux20 = vetor_ensaios[20]
-aux21 = vetor_ensaios[21]
-aux22 = vetor_ensaios[22]
-aux23 = vetor_ensaios[23]
-aux24 = vetor_ensaios[24]
-aux25 = vetor_ensaios[25]
-aux26 = vetor_ensaios[26]
-aux27 = vetor_ensaios[27]
-aux28 = vetor_ensaios[28]
-aux29 = vetor_ensaios[29]
+# popatual = criarpop(tamanhopop, tamanhoindividuo)
+# for i in range(28, 31):
+#     individuomaisapto = main(geracao, popatual, taxadecruzamento, taxamutacao)[1]
+#     vetor_ensaios.append(individuomaisapto)
+#     print(individuomaisapto)
+#     print(i)
+# individuomaisapto = main(geracao,popatual,taxadecruzamento,taxamutacao)[1]
+# individuomenosapto = main(geracao,popatual,taxadecruzamento,taxamutacao)[2]
+# aux0 = vetor_ensaios[0]
+# aux1 = vetor_ensaios[1]
+# aux2 = vetor_ensaios[2]
+# aux3 = vetor_ensaios[3]
+# aux4 = vetor_ensaios[4]
+# aux5 = vetor_ensaios[5]
+# aux6 = vetor_ensaios[6]
+# aux7 = vetor_ensaios[7]
+# aux8 = vetor_ensaios[8]
+# aux9 = vetor_ensaios[9]
+# aux10 = vetor_ensaios[10]
+# aux11 = vetor_ensaios[11]
+# aux12 = vetor_ensaios[12]
+# aux13 = vetor_ensaios[13]
+# aux14 = vetor_ensaios[14]
+# aux15 = vetor_ensaios[15]
+# aux16 = vetor_ensaios[16]
+# aux17 = vetor_ensaios[17]
+# aux18 = vetor_ensaios[18]
+# aux19 = vetor_ensaios[19]
+# aux20 = vetor_ensaios[20]
+# aux21 = vetor_ensaios[21]
+# aux22 = vetor_ensaios[22]
+# aux23 = vetor_ensaios[23]
+# aux24 = vetor_ensaios[24]
+# aux25 = vetor_ensaios[25]
+# aux26 = vetor_ensaios[26]
+# aux27 = vetor_ensaios[27]
+# aux28 = vetor_ensaios[28]
+# aux29 = vetor_ensaios[29]
 
-media = media(aux0, aux1, aux2, aux3, aux4, aux5, aux6, aux7, aux8, aux9, aux10, aux11, aux12, aux13, aux14, aux15,
-              aux16, aux17, aux18, aux19, aux20, aux21, aux22, aux23, aux24, aux25, aux26, aux27, aux28, aux29)
+# media = media(aux0, aux1, aux2, aux3, aux4, aux5, aux6, aux7, aux8, aux9, aux10, aux11, aux12, aux13, aux14, aux15,
+#               aux16, aux17, aux18, aux19, aux20, aux21, aux22, aux23, aux24, aux25, aux26, aux27, aux28, aux29)
 
 
 fig =  plt.figure()
 graf1 = fig.add_subplot(1,1,1)
-graf1.plot(media,'b-')
+graf1.plot(individuomaisapto,'b-')
 # graf1.plot(individuomaisapto, 'r-')
 # graf1.plot(individuomenosapto, 'g-')
 plt.title('Média dos Melhores Individuos',fontsize ='medium')
 plt.ylabel(u'Melhor individuo')
 plt.xlabel(u'Gerações')
 plt.show()
-
