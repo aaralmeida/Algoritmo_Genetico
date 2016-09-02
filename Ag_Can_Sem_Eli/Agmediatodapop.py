@@ -178,9 +178,9 @@ def main(geracao, pop_atual, taxadecruzamento, taxamutacao):
     return (pop_atual, individuomaisapto, individuomenosapto, mediapop)
 
 vetor_ensaios = []
-popatual = criarpop(tamanhopop, tamanhoindividuo)
 
 popatual = criarpop(tamanhopop, tamanhoindividuo)
+
 for i in range(1,4):
     mediatodapop = main(geracao, popatual, taxadecruzamento, taxamutacao)[3]
     vetor_ensaios.append(mediatodapop)

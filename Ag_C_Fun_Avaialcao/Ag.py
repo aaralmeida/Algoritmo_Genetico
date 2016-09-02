@@ -8,7 +8,6 @@ tamanhoindividuo = 50  # Tamanho de bits de cada indivíduo
 taxadecruzamento = 75
 taxamutacao = 1
 geracao = 100
-elitismo = 'false'
 def criarpop(tamanhopop, tamanhoindiviuo):
     pop = []
     aux = []
@@ -49,19 +48,43 @@ def decodreal(inteirox_y):
         aux.append(valorrealx)
         aux.append(valorrealy)
         realx_y.append(aux)
+
     return realx_y
 
-def avalia_pop(vetor_real):
+def fitness(vetor_real):
     pop_avaliada = []
     for k in range(0, tamanhopop):
         valor_z = 0
         individuo_real = vetor_real[k]
         x = individuo_real[0]
         y = individuo_real[1]
-        valor_z = 0.5 - (((np.sin(np.sqrt(x ** 2 + y ** 2)))
+        valor_z = 999.5 - (((np.sin(np.sqrt(x ** 2 + y ** 2)))
          ** 2 - 0.5) / (1 + (0.001 * (x ** 2 + y ** 2)) ** 2))
         pop_avaliada.append(valor_z)
     return pop_avaliada
+
+def rankear(pop_atual, pop_avaliada):
+    popmatriz = np.column_stack((pop_atual, pop_avaliada))
+    matriz_rankeada = sorted(popmatriz, key=lambda popmatriz: popmatriz[50])
+    popatualrankeada = []
+    popavaliadarankeada = []
+    aux = []
+    for i in range(0,len(pop_atual)):
+        popavaliadarankeada.append(matriz_rankeada[i][50])
+        for j in range(0,tamanhoindividuo):
+            if matriz_rankeada[i][j] == 0.0:
+                aux.append(0)
+            else:
+                aux.append(1)
+        popatualrankeada.append(aux)
+        aux = []
+    return popatualrankeada, popavaliadarankeada
+
+def funcaoavaliacao():
+    avaliacao = []
+    for i in range(1,tamanhopop+1):
+        avaliacao.append(10+((500-10)*(i-1))/(tamanhopop - 1))
+    return avaliacao
 
 def selecao(vetor_populacao, vetor_avaliado):
     soma_aptidao = 0
@@ -78,6 +101,7 @@ def selecao(vetor_populacao, vetor_avaliado):
         if acumulador >= r:
             selecionado = vetor_populacao[k]
             break
+
     return selecionado
 
 def cruzamento(vetor_pop, vetor_aptidao, txcruzamento):
@@ -118,14 +142,13 @@ def mutacao(populacaoatual, txmutacao):
         populacaomutada.append(individuo)
     return populacaomutada
 
-def selecaomaisapto(pop_avaliada, vetor_populacao):
+def selecaomaisapto(pop_avaliada,pop_atual):
     maisapto = 0
-    melhorindividuo = []
     for i in range(0, len(pop_avaliada)):
         if maisapto < pop_avaliada[i]:
             maisapto = pop_avaliada[i]
-            melhorindividuo = vetor_populacao[i]
-    return maisapto, melhorindividuo
+            individuo = pop_atual[i]
+    return maisapto
 
 def selecaomenosapto(pop_avaliada):
     menosapto = 1
@@ -150,28 +173,22 @@ def media(ensaio1, ensaio2, ensaio3, ensaio4, ensaio5, ensaio6, ensaio7, ensaio8
 def main(geracao, pop_atual, taxadecruzamento, taxamutacao):
     individuomaisapto=[]
     individuomenosapto=[]
-    melhorindividuo = 0
-    ponto = 0
     for i in range(0, geracao):
         popinteiro=decodint(pop_atual)
         popreal=decodreal(popinteiro)
-        popavaliada = avalia_pop(popreal)
-        individuomaisapto.append(selecaomaisapto(popavaliada,pop_atual)[0])
-        melhorindividuo = selecaomaisapto(popavaliada,pop_atual)[1]
-        individuomenosapto.append(selecaomenosapto(popavaliada))
-        pop_filhos = cruzamento(pop_atual, popavaliada, taxadecruzamento)
+        popfitness = fitness(popreal)
+        poprankeada = rankear(pop_atual, popfitness)[0]
+        melhorindividuo = poprankeada[99]
+        popavaliada = funcaoavaliacao()
+        pop_filhos = cruzamento(poprankeada, popavaliada, taxadecruzamento)
         pop_filhosmutados = mutacao(pop_filhos, taxamutacao)
         pop_atual = pop_filhosmutados
-        if elitismo == 'true':
-            ponto = randint(0, 99)
-            pop_atual[ponto] = melhorindividuo
+        pop_atual[5] = melhorindividuo
+        individuomaisapto.append(selecaomaisapto(popfitness,pop_atual))
     return (pop_atual, individuomaisapto, individuomenosapto)
 
-pop = criarpop(tamanhopop,tamanhoindividuo)
-individuomaisapto = main(geracao, pop, taxadecruzamento, taxamutacao)[1]
-
-
-
+popatual = criarpop(tamanhopop, tamanhoindividuo)
+individuomaisapto = main(geracao, popatual, taxadecruzamento, taxamutacao)[1]
 
 
 # vetor_ensaios = []
@@ -274,6 +291,7 @@ individuomaisapto = main(geracao, pop, taxadecruzamento, taxamutacao)[1]
 
 
 fig =  plt.figure()
+# x = np.linspace(0, 100, 20)
 graf1 = fig.add_subplot(1,1,1)
 graf1.plot(individuomaisapto,'b-')
 # graf1.plot(individuomaisapto, 'r-')
@@ -281,4 +299,5 @@ graf1.plot(individuomaisapto,'b-')
 plt.title('Média dos Melhores Individuos',fontsize ='medium')
 plt.ylabel(u'Melhor individuo')
 plt.xlabel(u'Gerações')
+plt.grid(True)
 plt.show()

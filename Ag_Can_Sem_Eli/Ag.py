@@ -7,7 +7,8 @@ tamanhopop = 100  # Número de Individuos
 tamanhoindividuo = 50  # Tamanho de bits de cada indivíduo
 taxadecruzamento = 75
 taxamutacao = 1
-geracao = 1
+geracao = 100
+
 def criarpop(tamanhopop, tamanhoindiviuo):
     pop = []
     aux = []
@@ -154,7 +155,7 @@ def main(geracao, pop_atual, taxadecruzamento, taxamutacao):
         popinteiro=decodint(pop_atual)
         popreal=decodreal(popinteiro)
         popavaliada = avalia_pop(popreal)
-        individuomaisapto.append(selecaomaisapto(popavaliada,pop_atual))
+        individuomaisapto.append(selecaomaisapto(popavaliada))
         individuomenosapto.append(selecaomenosapto(popavaliada))
         pop_filhos = cruzamento(pop_atual, popavaliada, taxadecruzamento)
         pop_filhosmutados = mutacao(pop_filhos, taxamutacao)
@@ -162,8 +163,10 @@ def main(geracao, pop_atual, taxadecruzamento, taxamutacao):
 
     return (pop_atual, individuomaisapto, individuomenosapto)
 
-# vetor_ensaios = []
 
+# vetor_ensaios = []
+popatual = criarpop(tamanhopop, tamanhoindividuo)
+individuomaisapto = main(geracao, popatual, taxadecruzamento, taxamutacao)[1]
 # popatual = criarpop(tamanhopop, tamanhoindividuo)
 # for i in range(1, 4):
 #     individuomaisapto = main(geracao, popatual, taxadecruzamento, taxamutacao)[1]

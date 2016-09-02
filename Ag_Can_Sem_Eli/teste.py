@@ -1,6 +1,7 @@
 from matplotlib import pyplot as plt
 import numpy as np
 from random import randint
+import csv
 
 
 # def selecao(vetor_avaliado, vetor_populacao):
@@ -154,8 +155,40 @@ from random import randint
 # plt.show()
 
 
-b = [1,2,3,4]
+# a = [[0,1,1],[0,1,2],[0,1,1],[0,1,2],[0,1,1]]
+# b = [3,1,4,6,0.5]
 
-a = b[0]
+# ab = np.column_stack((a,b))
+# range(1,le(a))
 
+# print(ab)
+# c = []
+# c = sorted(ab, key=lambda ab: ab[3])
+# print(c)
+
+# print(ab[2][1])
+# vet= []
+# aux= []
+
+# for i in range(0,len(b)):
+# 	for j in range(0,3):
+# 		aux.append(c[i][j])
+# 	vet.append(aux)
+# 	aux = []
+# print(vet)
+
+# a = [0,1,2,3]
+# b = [0,1,2,3]
+# plt.rcParams['axes.unicode_minus'] = False
+# fig, ax = plt.subplots()
+# ax.plot(10*np.random.randn(100), 10*np.random.randn(100), 'o',)
+# ax.set_title('Using hypen instead of unicode minus')
+# plt.grid(True)
+# plt.show()
+a = []
+a.append(1 2)
 print(a)
+a = 10
+
+for i in range(0,a):
+	
